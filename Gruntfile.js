@@ -2,7 +2,16 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
+      options: {
+        separator: ';',
+      },
+
+      dist: {
+        src: ['public/client/**/*.js'],
+        dest: 'public/dist/concat.js',
+      }
     },
 
     mochaTest: {
@@ -20,7 +29,13 @@ module.exports = function(grunt) {
       }
     },
 
+
     uglify: {
+      my_target: {
+        files: {
+          'dest/appUglify.min.js': ['public/dist/concat.js']
+        }
+      }
     },
 
     eslint: {
